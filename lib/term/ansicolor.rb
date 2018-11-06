@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tins/xt/full'
 
 module Term
@@ -86,7 +88,7 @@ module Term
     # on the color +name+ is returned.
     def color(name, string = nil, &block)
       attribute = Attribute[name] or raise ArgumentError, "unknown attribute #{name.inspect}"
-      result = ''
+      result = String.new
       result << "\e[#{attribute.code}m" if Term::ANSIColor.coloring?
       if block_given?
         result << yield.to_s
